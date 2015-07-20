@@ -38,7 +38,7 @@ class TabBarViewController: UITabBarController {
     @IBAction func logOutButton(sender: AnyObject) {
         UdacityClient.sharedInstance().logOut() { (success, errorLogOut) in
             if (success == true) {
-                print("Log Out...")
+                print("Log Out..")
                 dispatch_async(dispatch_get_main_queue(), {
                     let newController = self.storyboard!.instantiateViewControllerWithIdentifier("logInScreen") as UIViewController
                     self.presentViewController(newController, animated: true, completion: nil)
