@@ -87,6 +87,9 @@ class AddPinViewController: UIViewController, MKMapViewDelegate, UITextFieldDele
 
         let geoCoder: CLGeocoder = CLGeocoder()
         
+        self.activityIndicator.hidden = false
+        self.activityBackground.hidden = false
+
         //Geocodes the location to see if places available
         geoCoder.geocodeAddressString(self.locationField.text!, completionHandler: { (places, error) -> Void in
             
@@ -127,9 +130,7 @@ class AddPinViewController: UIViewController, MKMapViewDelegate, UITextFieldDele
             errorAlert("URL not valid", error: "Enter another URL")
         } else {
             //Post method -> new location into Parse
-            self.activityIndicator.hidden = false
-            self.activityBackground.hidden = false
-            ParseClient.sharedInstance().posttingOneStudentInformation(self.coordinates.latitude.description, longitud: self.coordinates.longitude.description, studentAddress: self.locationField.text!, studentURL: self.linkField.text!) { (success, errorString) in
+                        ParseClient.sharedInstance().posttingOneStudentInformation(self.coordinates.latitude.description, longitud: self.coordinates.longitude.description, studentAddress: self.locationField.text!, studentURL: self.linkField.text!) { (success, errorString) in
                 if success {
                     dispatch_async(dispatch_get_main_queue(), {
                         
